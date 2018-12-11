@@ -23,14 +23,17 @@
         <form class="form-signin" method="POST" action="{{URL::to('/home')}}">
             @csrf
             <h2 class="form-signin-heading">Please login</h2>
-            <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+            <input type="text" class="form-control" name="first_name" placeholder="First Name" required="" autofocus="" />
+            <input type="text" class="form-control" name="last_name" placeholder="Last Name" required="" />
+            <input type="text" class="form-control" name="email" placeholder="Email Address" required="" />
             <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+            <input type="password" class="form-control" name="password_repeat" placeholder="Repeat password" required=""/>
             <h5>
-                Haven't accout yet? Register
-                <a href="../register">here</a>!
+                Already registered? Login
+                <a href="../login">here</a>!
             </h5>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </form>
     </div>
 </body>

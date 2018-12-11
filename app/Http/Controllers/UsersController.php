@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -119,6 +121,46 @@ class UsersController extends Controller
         User::destroy($id);
 
         return redirect('admin/posts')->with('flash_message', 'User deleted!');
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function register(Request $request)
+    {
+        /*
+        print_r($request->input());
+        $result = DB::insert('INSERT INTO users(first_name, last_name, email, password) VALUES(?, ?, ? ,?)',
+            [
+                $request->input('first_name'),
+                $request->input('last_name'),
+                $request->input('email'),
+                $request->input('password')
+            ]
+        );
+
+        */
+        DB::table('users')->insert(
+            [
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => $request->input('email'),
+                'password' => $request->input('password')
+            ]
+        );
+        /*
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+        */
+
+        //$user = User::create(request(['first_name', 'last_name', 'email', 'password']));
+
+        //auth()->login($user);
+
+        return redirect()->to('/home');
     }
 }
 
